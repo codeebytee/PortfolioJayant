@@ -3,10 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jayant Singh — Portfolio</title>
+<title>Jayant Singh | Full-Stack Developer & Quant Finance Portfolio</title>
+<meta name="title" content="Jayant Singh | Full-Stack Developer & Quant Finance Portfolio">
+<meta name="description" content="Jayant Singh is a full-stack developer, data analyst, and quantitative finance enthusiast based in Bologna, Italy, building finance, tech, and data-driven products.">
+<meta name="keywords" content="Jayant Singh, Jayant Singh portfolio, full stack developer, quantitative finance, finance technology, data analyst, Bologna Italy, portfolio website">
+<meta name="author" content="Jayant Singh">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://codeebytee.github.io/PortfolioJayant/">
+<meta property="og:title" content="Jayant Singh | Full-Stack Developer & Quant Finance Portfolio">
+<meta property="og:description" content="Explore Jayant Singh's portfolio featuring software engineering, finance, analytics, and quantitative finance projects.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codeebytee.github.io/PortfolioJayant/">
+<meta property="og:site_name" content="Jayant Singh Portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jayant Singh | Full-Stack Developer & Quant Finance Portfolio">
+<meta name="twitter:description" content="Full-stack developer and quantitative finance enthusiast based in Bologna, Italy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jayant Singh",
+  "jobTitle": "Full-Stack Developer & Quant Finance Enthusiast",
+  "description": "Developer focused on software engineering, finance, analytics, and quantitative finance projects.",
+  "url": "https://codeebytee.github.io/PortfolioJayant/",
+  "email": "mailto:jayantsinghprof@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/-jayant-singh-/-",
+    "https://github.com/codeebytee"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bologna",
+    "addressCountry": "IT"
+  }
+}
+</script>
 <style>
   html,body{margin:0;background:#0a0a0a;font-family:'JetBrains Mono',monospace}
   *{box-sizing:border-box}
@@ -14,6 +49,14 @@
   .tag-btn:hover{border-color:rgba(57,217,138,.5);color:rgba(234,245,238,.9)}
   .tag-btn.active{background:#39d98a;border-color:#39d98a;color:#0a0a0a}
   a{-webkit-tap-highlight-color:transparent}
+  .nav-a{transition:color .15s}
+  .nav-toggle{display:none;cursor:pointer;background:transparent;border:1px solid rgba(57,217,138,.4);color:rgba(234,245,238,.85);font:500 12px 'JetBrains Mono',monospace;padding:6px 12px;border-radius:3px;align-items:center;letter-spacing:.02em;margin-left:auto}
+  .nav-toggle:hover{border-color:#39d98a}
+  .nav-caret{display:inline-block;transition:transform .2s ease}
+  .nav-toggle.open .nav-caret{transform:rotate(180deg)}
+  .nav-dropdown{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(10,10,10,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(57,217,138,.25);box-shadow:0 12px 24px rgba(0,0,0,.5)}
+  .nav-dropdown .drop-a{display:block;padding:10px 32px;text-decoration:none;font-size:13px;border-top:1px solid rgba(234,245,238,.05)}
+  .nav-dropdown .drop-a:hover{background:rgba(57,217,138,.08)}
   @keyframes fibDraw { 0%{stroke-dashoffset:1} 50%{stroke-dashoffset:0} 100%{stroke-dashoffset:1} }
 
   /* responsive */
@@ -27,7 +70,9 @@
     .projects-grid{grid-template-columns:1fr !important}
     #skillsGrid{grid-template-columns:repeat(2,1fr) !important}
     .hero-title{font-size:30px !important}
-    .nav-links{gap:14px !important;overflow-x:auto;flex-wrap:nowrap}
+    .nav-links{display:none !important}
+    .nav-toggle{display:inline-flex !important}
+    .nav-dropdown.open{display:block !important}
     .career-row,.blog-row{grid-template-columns:70px 1fr !important;gap:14px !important}
   }
 </style>
@@ -46,15 +91,18 @@
       </div>
       <div style="flex:1;text-align:center;font-size:11px;color:rgba(234,245,238,.4)">jayant@portfolio: ~/site</div>
     </div>
-    <div class="nav-links" style="display:flex;align-items:center;gap:24px;padding:14px 32px;font-size:12px;color:rgba(234,245,238,.55)">
+    <div class="nav-row" style="display:flex;align-items:center;gap:24px;padding:14px 32px;font-size:12px;color:rgba(234,245,238,.55)">
       <span style="color:#39d98a">~$</span>
-      <a href="#home" style="color:#39d98a;text-decoration:none">./home</a>
-      <a href="#about" style="color:rgba(234,245,238,.55);text-decoration:none">./about</a>
-      <a href="#career" style="color:rgba(234,245,238,.55);text-decoration:none">./career</a>
-      <a href="#skills" style="color:rgba(234,245,238,.55);text-decoration:none">./skills</a>
-      <a href="#projects" style="color:rgba(234,245,238,.55);text-decoration:none">./projects</a>
-      <a href="#blog" style="color:rgba(234,245,238,.55);text-decoration:none">./blog</a>
-      <a href="#contact" style="color:rgba(234,245,238,.55);text-decoration:none">./contact</a>
+      <div class="nav-links" style="display:flex;align-items:center;gap:24px">
+        <a class="nav-a" href="#home" data-target="home" style="color:#39d98a;text-decoration:none">./home</a>
+        <a class="nav-a" href="#about" data-target="about" style="color:rgba(234,245,238,.55);text-decoration:none">./about</a>
+        <a class="nav-a" href="#career" data-target="career" style="color:rgba(234,245,238,.55);text-decoration:none">./career</a>
+        <a class="nav-a" href="#skills" data-target="skills" style="color:rgba(234,245,238,.55);text-decoration:none">./skills</a>
+        <a class="nav-a" href="#projects" data-target="projects" style="color:rgba(234,245,238,.55);text-decoration:none">./projects</a>
+        <a class="nav-a" href="#blog" data-target="blog" style="color:rgba(234,245,238,.55);text-decoration:none">./blog</a>
+        <a class="nav-a" href="#contact" data-target="contact" style="color:rgba(234,245,238,.55);text-decoration:none">./contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false"><span style="color:#39d98a">$</span>&nbsp;menu&nbsp;<span class="nav-caret" id="navCaret">▾</span></button>
 
       <!-- fibonacci spiral, expands as you scroll -->
       <div style="margin-left:auto;width:40px;height:40px;position:relative;overflow:visible" title="scroll progress">
@@ -62,6 +110,17 @@
           <path id="spiralPath" d="M 50.05,50.00 L 50.06,50.01 L 50.06,50.01 L 50.06,50.02 L 50.06,50.02 L 50.06,50.03 L 50.05,50.04 L 50.05,50.04 L 50.05,50.05 L 50.04,50.06 L 50.04,50.06 L 50.03,50.07 L 50.03,50.07 L 50.02,50.08 L 50.01,50.08 L 50.01,50.09 L 50.00,50.09 L 49.99,50.09 L 49.98,50.09 L 49.97,50.09 L 49.96,50.09 L 49.95,50.09 L 49.94,50.09 L 49.93,50.08 L 49.92,50.08 L 49.91,50.07 L 49.90,50.06 L 49.89,50.05 L 49.88,50.04 L 49.87,50.03 L 49.86,50.02 L 49.86,50.01 L 49.85,49.99 L 49.85,49.98 L 49.85,49.96 L 49.85,49.94 L 49.85,49.93 L 49.86,49.91 L 49.86,49.89 L 49.87,49.88 L 49.88,49.86 L 49.89,49.84 L 49.90,49.83 L 49.92,49.81 L 49.94,49.80 L 49.95,49.79 L 49.97,49.78 L 50.00,49.77 L 50.02,49.76 L 50.05,49.76 L 50.07,49.76 L 50.10,49.76 L 50.13,49.76 L 50.15,49.77 L 50.18,49.78 L 50.21,49.79 L 50.23,49.81 L 50.26,49.83 L 50.29,49.85 L 50.31,49.88 L 50.33,49.90 L 50.35,49.93 L 50.36,49.97 L 50.38,50.01 L 50.38,50.04 L 50.39,50.08 L 50.39,50.13 L 50.39,50.17 L 50.38,50.22 L 50.37,50.26 L 50.35,50.30 L 50.33,50.35 L 50.30,50.39 L 50.27,50.43 L 50.23,50.47 L 50.19,50.51 L 50.14,50.54 L 50.09,50.57 L 50.03,50.59 L 49.97,50.61 L 49.91,50.63 L 49.84,50.63 L 49.77,50.63 L 49.70,50.63 L 49.63,50.61 L 49.56,50.59 L 49.49,50.56 L 49.42,50.52 L 49.35,50.47 L 49.28,50.42 L 49.22,50.36 L 49.16,50.29 L 49.11,50.21 L 49.07,50.12 L 49.03,50.03 L 49.00,49.93 L 48.98,49.82 L 48.97,49.71 L 48.98,49.60 L 48.99,49.49 L 49.02,49.37 L 49.06,49.25 L 49.11,49.14 L 49.18,49.02 L 49.26,48.91 L 49.35,48.81 L 49.45,48.71 L 49.57,48.62 L 49.70,48.54 L 49.85,48.47 L 50.00,48.42 L 50.16,48.37 L 50.33,48.35 L 50.51,48.34 L 50.70,48.35 L 50.88,48.38 L 51.07,48.43 L 51.26,48.50 L 51.45,48.59 L 51.63,48.70 L 51.81,48.84 L 51.98,48.99 L 52.13,49.17 L 52.27,49.37 L 52.40,49.59 L 52.50,49.82 L 52.58,50.07 L 52.64,50.34 L 52.68,50.62 L 52.68,50.91 L 52.66,51.21 L 52.60,51.52 L 52.51,51.83 L 52.39,52.13 L 52.23,52.43 L 52.04,52.73 L 51.81,53.01 L 51.55,53.27 L 51.25,53.52 L 50.93,53.74 L 50.57,53.93 L 50.18,54.09 L 49.76,54.21 L 49.32,54.30 L 48.86,54.34 L 48.38,54.34 L 47.89,54.28 L 47.40,54.18 L 46.90,54.02 L 46.41,53.80 L 45.92,53.53 L 45.46,53.20 L 45.01,52.82 L 44.59,52.38 L 44.20,51.88 L 43.86,51.34 L 43.56,50.74 L 43.32,50.10 L 43.14,49.41 L 43.02,48.69 L 42.97,47.94 L 43.00,47.16 L 43.11,46.37 L 43.31,45.56 L 43.59,44.76 L 43.96,43.96 L 44.43,43.19 L 44.98,42.44 L 45.63,41.72 L 46.37,41.06 L 47.20,40.45 L 48.11,39.92 L 49.09,39.46 L 50.16,39.09 L 51.28,38.83 L 52.46,38.67 L 53.69,38.63 L 54.96,38.71 L 56.25,38.93 L 57.55,39.29 L 58.85,39.79 L 60.13,40.43 L 61.38,41.23 L 62.58,42.17 L 63.71,43.26 L 64.76,44.50 L 65.71,45.87 L 66.54,47.38 L 67.24,49.01 L 67.79,50.76 L 68.17,52.61 L 68.37,54.55 L 68.38,56.56 L 68.18,58.62 L 67.77,60.71 L 67.13,62.82 L 66.25,64.92 L 65.14,66.97 L 63.78,68.97 L 62.19,70.88 L 60.36,72.68 L 58.29,74.33 L 56.00,75.82 L 53.50,77.11 L 50.80,78.17 L 47.93,78.98 L 44.89,79.52 L 41.72,79.76 L 38.44,79.68 L 35.09,79.26 L 31.69,78.49 L 28.28,77.35 L 24.91,75.82 L 21.60,73.91 L 18.40,71.61 L 15.36,68.92 L 12.51,65.84 L 9.91,62.40 L 7.59,58.59 L 5.61,54.45 L 4.00,50.00" fill="none" stroke="#39d98a" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="0.92"></path>
         </svg>
       </div>
+    </div>
+    <!-- terminal-style dropdown (mobile) -->
+    <div class="nav-dropdown" id="navDropdown">
+      <div style="font-size:10px;color:rgba(234,245,238,.35);padding:10px 32px 4px"><span style="color:#39d98a">$</span> ls ~/site/sections</div>
+      <a class="nav-a drop-a" href="#home" data-target="home" style="color:#39d98a">./home</a>
+      <a class="nav-a drop-a" href="#about" data-target="about" style="color:rgba(234,245,238,.55)">./about</a>
+      <a class="nav-a drop-a" href="#career" data-target="career" style="color:rgba(234,245,238,.55)">./career</a>
+      <a class="nav-a drop-a" href="#skills" data-target="skills" style="color:rgba(234,245,238,.55)">./skills</a>
+      <a class="nav-a drop-a" href="#projects" data-target="projects" style="color:rgba(234,245,238,.55)">./projects</a>
+      <a class="nav-a drop-a" href="#blog" data-target="blog" style="color:rgba(234,245,238,.55)">./blog</a>
+      <a class="nav-a drop-a" href="#contact" data-target="contact" style="color:rgba(234,245,238,.55)">./contact</a>
     </div>
   </div>
 
@@ -91,7 +150,7 @@
         </div>
         <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
           <a href="mailto:jayantsinghprof@gmail.com" style="background:#39d98a;color:#0a0a0a;padding:12px 22px;border-radius:3px;font-weight:600;font-size:12px;text-decoration:none">Let's Talk!</a>
-          <a href="#" style="border:1px solid rgba(234,245,238,.2);color:#eaf5ee;padding:12px 22px;border-radius:3px;font-size:12px;text-decoration:none">Resume →</a>
+          <a href="https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcodeebytee%2FPortfolioJayant%2Fmain%2Fsrc%2Fpdf%2FJayant_Singh_CV_.pdf" target="_blank" rel="noopener" style="border:1px solid rgba(234,245,238,.2);color:#eaf5ee;padding:12px 22px;border-radius:3px;font-size:12px;text-decoration:none">Resume →</a>
         </div>
       </div>
       <div class="hero-art" style="display:flex;align-items:center;justify-content:center">
@@ -192,7 +251,8 @@
   ];
 
   var allProjects = [
-    { title: 'StockInds', category: 'quant', categoryLabel: 'QUANT', desc: 'Real-time stock market indicators and data visualization built with modern web tooling.', github: 'https://github.com/codeebytee/StockInds', live: 'https://codeebytee.github.io/StockInds/' },
+    { title: 'StockInds', category: 'quant', categoryLabel: 'QUANT', desc: 'Real-time stock market indicators and data visualization built with modern web tooling.', github: 'https://github.com/codeebytee/StockInds', live: 'https://codeebytee.github.io/MarketVision/' },
+    { title: 'Ferrari KPI Dashboard', category: 'ba', categoryLabel: 'BUSINESS ANALYST', desc: 'Executive Power BI dashboard analyzing Ferrari\'s 2016–2024 financials — revenue, EBITDA, net debt and P&L waterfall KPIs, built with Power Query and DAX on a star-schema model.', github: 'https://github.com/codeebytee/Ferrari-KPI-Dashboard', live: '' },
     { title: 'Formula 1 Statsheet', category: 'dev', categoryLabel: 'DEVELOPMENT', desc: 'Dynamic dashboard presenting live statistics for F1 drivers and teams.', github: 'https://github.com/codeebytee/formula1statsheet', live: 'https://codeebytee.github.io/formula1statsheet/' },
     { title: 'Universal Converter', category: 'dev', categoryLabel: 'DEVELOPMENT', desc: 'A versatile tool for converting between units of length, weight, and temperature.', github: 'https://github.com/codeebytee/UniversalConvertor', live: 'https://codeebytee.github.io/UniversalConvertor/' }
   ];
@@ -272,13 +332,16 @@
       return;
     }
     grid.innerHTML = projects.map(function(p){
+      var liveLink = p.live
+        ? '<a href="' + attr(p.live) + '" target="_blank" rel="noopener" style="color:rgba(234,245,238,.5);text-decoration:none">Live view →</a>'
+        : '';
       return '<div style="border:1px solid rgba(234,245,238,.12);border-radius:4px;padding:20px;background:#0f130f">'
         + '<div style="font-size:10px;color:#39d98a;margin-bottom:8px">[' + esc(p.categoryLabel) + ']</div>'
         + '<div style="font-size:15px;font-weight:600;margin-bottom:8px">' + esc(p.title) + '</div>'
         + '<div style="font-size:12px;color:rgba(234,245,238,.6);line-height:1.7;margin-bottom:14px">' + esc(p.desc) + '</div>'
         + '<div style="display:flex;gap:14px;font-size:11px">'
         + '<a href="' + attr(p.github) + '" target="_blank" rel="noopener" style="color:#39d98a;text-decoration:none">GitHub →</a>'
-        + '<a href="' + attr(p.live) + '" target="_blank" rel="noopener" style="color:rgba(234,245,238,.5);text-decoration:none">Live view →</a></div></div>';
+        + liveLink + '</div></div>';
     }).join('');
   }
 
@@ -305,6 +368,34 @@
     }).join('');
   }
 
+  // ---- scroll-spy: highlight the nav link for the section in view ----
+  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('.nav-a'));
+  var spySections = ['home','about','career','skills','projects','blog','contact']
+    .map(function(id){ return { id: id, el: el(id) }; })
+    .filter(function(s){ return s.el; });
+  var activeSection = null;
+
+  function currentSection(){
+    var pos = window.scrollY + 160; // account for the fixed top bar
+    var cur = spySections.length ? spySections[0].id : null;
+    for(var i = 0; i < spySections.length; i++){
+      if(spySections[i].el.offsetTop <= pos) cur = spySections[i].id;
+    }
+    // if scrolled to the very bottom, force the last section active
+    if(spySections.length && (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 2)){
+      cur = spySections[spySections.length - 1].id;
+    }
+    return cur;
+  }
+
+  function setActiveNav(id){
+    if(id === activeSection) return;
+    activeSection = id;
+    navAnchors.forEach(function(a){
+      a.style.color = a.getAttribute('data-target') === id ? '#39d98a' : 'rgba(234,245,238,.55)';
+    });
+  }
+
   // ---- scroll-driven visuals ----
   var scrollDot = el('scrollDot');
   var spiralPath = el('spiralPath');
@@ -322,7 +413,29 @@
     spiralPath.parentNode.style.transform = 'scale(' + spiralScale.toFixed(3) + ')';
     spiralPath.parentNode.style.transformOrigin = 'center';
     spiralPath.setAttribute('stroke-dashoffset', (1 - (0.08 + t * 0.9)).toFixed(3));
+
+    setActiveNav(currentSection());
   }
+
+  // ---- terminal dropdown menu (mobile) ----
+  var navToggle = el('navToggle');
+  var navDropdown = el('navDropdown');
+
+  function closeMenu(){
+    navDropdown.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu(){
+    var open = navDropdown.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  navToggle.addEventListener('click', toggleMenu);
+  Array.prototype.forEach.call(navDropdown.querySelectorAll('a'), function(a){
+    a.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 860) closeMenu(); });
 
   function onScroll(){
     var doc = document.documentElement;

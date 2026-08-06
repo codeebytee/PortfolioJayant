@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | Jayant Singh</title>
+<meta name="description" content="Writing by Jayant Singh on quantitative finance, markets, and building software.">
+<meta name="author" content="Jayant Singh">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://jayantsingh.eu/blog/">
+<meta property="og:title" content="Blog | Jayant Singh">
+<meta property="og:description" content="Writing by Jayant Singh on quantitative finance, markets, and building software.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jayantsingh.eu/blog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-chrome">
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="topbar-path">jayant@portfolio: ~/site/blog</div>
+  </div>
+  <nav class="nav-row" aria-label="Site">
+    <span class="prompt">~$</span>
+    <a class="nav-a" href="../index.html">./home</a>
+    <a class="nav-a current" href="index.html" aria-current="page">./blog</a>
+    <a class="nav-a" href="../index.html#contact">./contact</a>
+  </nav>
+</header>
+
+<main class="section">
+  <h1 class="section-title">## Blog — $ tail -f writing.log</h1>
+  <p class="section-sub">Notes on quant finance, markets, and building things.</p>
+
+  <div id="blogStatus" class="status" role="status">
+    <span class="status-head">$ fetching posts…</span>
+    Loading the latest posts from GitHub.
+  </div>
+
+  <ul id="blogList" class="post-list" hidden></ul>
+</main>
+
+<script src="blog.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var statusEl = document.getElementById('blogStatus');
+  var listEl = document.getElementById('blogList');
+
+  function showStatus(head, message, isError) {
+    listEl.hidden = true;
+    statusEl.hidden = false;
+    statusEl.className = 'status' + (isError ? ' error' : '');
+    statusEl.innerHTML = '<span class="status-head">' + Blog.esc(head) + '</span>' + Blog.esc(message);
+  }
+
+  function renderPosts(posts) {
+    listEl.innerHTML = posts.map(function (post) {
+      var href = Blog.esc(Blog.postUrl(post.slug));
+      return '<li class="post-row">'
+        + '<div class="post-date">' + Blog.esc(Blog.formatDate(post.date)) + '</div>'
+        + '<div>'
+        + '<h2 class="post-title"><a href="' + href + '">' + Blog.esc(post.title) + '</a></h2>'
+        + (post.excerpt ? '<p class="post-excerpt">' + Blog.esc(post.excerpt) + '</p>' : '')
+        + '<a class="post-more" href="' + href + '">Read post →</a>'
+        + '</div></li>';
+    }).join('');
+    statusEl.hidden = true;
+    listEl.hidden = false;
+  }
+
+  Blog.listPosts().then(function (posts) {
+    if (!posts.length) {
+      showStatus('$ ls posts/', 'No posts published yet — check back soon.', false);
+      return;
+    }
+    renderPosts(posts);
+  }).catch(function (err) {
+    showStatus('$ error', Blog.errorMessage(err), true);
+  });
+})();
+</script>
+</body>
+</html>

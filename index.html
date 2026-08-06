@@ -49,7 +49,12 @@
   .tag-btn:hover{border-color:rgba(57,217,138,.5);color:rgba(234,245,238,.9)}
   .tag-btn.active{background:#39d98a;border-color:#39d98a;color:#0a0a0a}
   a{-webkit-tap-highlight-color:transparent}
+  a:focus-visible,button:focus-visible{outline:2px solid #39d98a;outline-offset:3px;border-radius:2px}
   .nav-a{transition:color .15s}
+  .blog-link{color:#eaf5ee;text-decoration:none;transition:color .15s}
+  .blog-link:hover{color:#39d98a}
+  .blog-all{display:inline-block;margin-top:18px;font-size:12px;color:#39d98a;text-decoration:none}
+  .blog-all:hover{text-decoration:underline}
   .nav-toggle{display:none;cursor:pointer;background:transparent;border:1px solid rgba(57,217,138,.4);color:rgba(234,245,238,.85);font:500 12px 'JetBrains Mono',monospace;padding:6px 12px;border-radius:3px;align-items:center;letter-spacing:.02em;margin-left:auto}
   .nav-toggle:hover{border-color:#39d98a}
   .nav-caret{display:inline-block;transition:transform .2s ease}
@@ -58,6 +63,13 @@
   .nav-dropdown .drop-a{display:block;padding:10px 32px;text-decoration:none;font-size:13px;border-top:1px solid rgba(234,245,238,.05)}
   .nav-dropdown .drop-a:hover{background:rgba(57,217,138,.08)}
   @keyframes fibDraw { 0%{stroke-dashoffset:1} 50%{stroke-dashoffset:0} 100%{stroke-dashoffset:1} }
+
+  /* the rail curve stretches to whatever height the viewport is; the dot is
+     positioned from the rail's measured size in JS, so the two stay in sync */
+  #scrollDot{transition:top .08s linear,left .08s linear}
+  /* short viewports (landscape phones, small laptops): no room for the label */
+  @media (max-height: 460px){ .rail-label{display:none !important} }
+  @media (prefers-reduced-motion: reduce){ #scrollDot{transition:none} }
 
   /* responsive */
   @media (max-width: 860px){
@@ -125,12 +137,12 @@
   </div>
 
   <!-- RIGHT RAIL: scroll indicator tracing a bell curve -->
-  <div class="rightrail" style="position:fixed;top:0;right:0;width:64px;height:100vh;background:#0f130f;border-left:1px solid rgba(57,217,138,.15);z-index:45;overflow:hidden">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;top:-11px;left:0px;width:61px;height:993px">
+  <div class="rightrail" style="position:fixed;top:0;right:0;width:64px;height:100vh;height:100dvh;background:#0f130f;border-left:1px solid rgba(57,217,138,.15);z-index:45;overflow:hidden">
+    <svg class="rail-curve" viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;top:10px;left:0;width:100%;height:calc(100% - 20px)">
       <path d="M 20.19,0.00 L 20.22,0.50 L 20.24,1.00 L 20.27,1.50 L 20.30,2.00 L 20.33,2.50 L 20.37,3.00 L 20.41,3.50 L 20.45,4.00 L 20.50,4.50 L 20.56,5.00 L 20.61,5.50 L 20.68,6.00 L 20.75,6.50 L 20.82,7.00 L 20.90,7.50 L 20.99,8.00 L 21.09,8.50 L 21.19,9.00 L 21.31,9.50 L 21.43,10.00 L 21.56,10.50 L 21.70,11.00 L 21.86,11.50 L 22.02,12.00 L 22.20,12.50 L 22.39,13.00 L 22.59,13.50 L 22.81,14.00 L 23.04,14.50 L 23.29,15.00 L 23.55,15.50 L 23.83,16.00 L 24.13,16.50 L 24.45,17.00 L 24.78,17.50 L 25.14,18.00 L 25.51,18.50 L 25.91,19.00 L 26.33,19.50 L 26.77,20.00 L 27.23,20.50 L 27.71,21.00 L 28.22,21.50 L 28.76,22.00 L 29.31,22.50 L 29.89,23.00 L 30.50,23.50 L 31.13,24.00 L 31.79,24.50 L 32.47,25.00 L 33.17,25.50 L 33.90,26.00 L 34.66,26.50 L 35.43,27.00 L 36.23,27.50 L 37.06,28.00 L 37.90,28.50 L 38.77,29.00 L 39.65,29.50 L 40.56,30.00 L 41.48,30.50 L 42.42,31.00 L 43.37,31.50 L 44.34,32.00 L 45.32,32.50 L 46.31,33.00 L 47.30,33.50 L 48.31,34.00 L 49.32,34.50 L 50.33,35.00 L 51.34,35.50 L 52.35,36.00 L 53.35,36.50 L 54.35,37.00 L 55.33,37.50 L 56.31,38.00 L 57.27,38.50 L 58.21,39.00 L 59.14,39.50 L 60.04,40.00 L 60.91,40.50 L 61.76,41.00 L 62.58,41.50 L 63.37,42.00 L 64.12,42.50 L 64.84,43.00 L 65.52,43.50 L 66.16,44.00 L 66.75,44.50 L 67.30,45.00 L 67.80,45.50 L 68.25,46.00 L 68.66,46.50 L 69.01,47.00 L 69.31,47.50 L 69.56,48.00 L 69.75,48.50 L 69.89,49.00 L 69.97,49.50 L 70.00,50.00 L 69.97,50.50 L 69.89,51.00 L 69.75,51.50 L 69.56,52.00 L 69.31,52.50 L 69.01,53.00 L 68.66,53.50 L 68.25,54.00 L 67.80,54.50 L 67.30,55.00 L 66.75,55.50 L 66.16,56.00 L 65.52,56.50 L 64.84,57.00 L 64.12,57.50 L 63.37,58.00 L 62.58,58.50 L 61.76,59.00 L 60.91,59.50 L 60.04,60.00 L 59.14,60.50 L 58.21,61.00 L 57.27,61.50 L 56.31,62.00 L 55.33,62.50 L 54.35,63.00 L 53.35,63.50 L 52.35,64.00 L 51.34,64.50 L 50.33,65.00 L 49.32,65.50 L 48.31,66.00 L 47.30,66.50 L 46.31,67.00 L 45.32,67.50 L 44.34,68.00 L 43.37,68.50 L 42.42,69.00 L 41.48,69.50 L 40.56,70.00 L 39.65,70.50 L 38.77,71.00 L 37.90,71.50 L 37.06,72.00 L 36.23,72.50 L 35.43,73.00 L 34.66,73.50 L 33.90,74.00 L 33.17,74.50 L 32.47,75.00 L 31.79,75.50 L 31.13,76.00 L 30.50,76.50 L 29.89,77.00 L 29.31,77.50 L 28.76,78.00 L 28.22,78.50 L 27.71,79.00 L 27.23,79.50 L 26.77,80.00 L 26.33,80.50 L 25.91,81.00 L 25.51,81.50 L 25.14,82.00 L 24.78,82.50 L 24.45,83.00 L 24.13,83.50 L 23.83,84.00 L 23.55,84.50 L 23.29,85.00 L 23.04,85.50 L 22.81,86.00 L 22.59,86.50 L 22.39,87.00 L 22.20,87.50 L 22.02,88.00 L 21.86,88.50 L 21.70,89.00 L 21.56,89.50 L 21.43,90.00 L 21.31,90.50 L 21.19,91.00 L 21.09,91.50 L 20.99,92.00 L 20.90,92.50 L 20.82,93.00 L 20.75,93.50 L 20.68,94.00 L 20.61,94.50 L 20.56,95.00 L 20.50,95.50 L 20.45,96.00 L 20.41,96.50 L 20.37,97.00 L 20.33,97.50 L 20.30,98.00 L 20.27,98.50 L 20.24,99.00 L 20.22,99.50 L 20.19,100.00" fill="none" stroke="#39d98a" stroke-width="1" stroke-opacity="0.55" vector-effect="non-scaling-stroke"></path>
     </svg>
     <div id="scrollDot" style="position:absolute;left:20%;top:0%;width:11px;height:11px;margin-left:-5.5px;margin-top:-5.5px;border-radius:50%;background:#39d98a;box-shadow:0 0 10px 2px rgba(57,217,138,.6)"></div>
-    <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:9px;color:rgba(234,245,238,.3);letter-spacing:.05em;writing-mode:vertical-rl">SCROLL</div>
+    <div class="rail-label" style="position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:9px;color:rgba(234,245,238,.3);letter-spacing:.05em;writing-mode:vertical-rl">SCROLL</div>
   </div>
 
   <div style="padding-top:90px">
@@ -202,6 +214,7 @@
     <div id="blog" class="section" style="padding:48px;border-bottom:1px solid rgba(57,217,138,.1);margin-right:64px">
       <div style="font-size:16px;color:#39d98a;margin-bottom:20px">## Blog — $ tail -f writing.log</div>
       <div id="blogList"></div>
+      <a class="blog-all" href="blog/index.html">View all posts →</a>
     </div>
 
     <!-- BOOKMARKS + SUGGESTIONS -->
@@ -231,6 +244,7 @@
   </div>
 </div>
 
+<script src="blog/blog.js"></script>
 <script>
 (function(){
   "use strict";
@@ -261,12 +275,6 @@
     { key: 'all', label: 'ALL' }, { key: 'quant', label: 'QUANT' },
     { key: 'dev', label: 'DEVELOPMENT' }, { key: 'ba', label: 'BUSINESS ANALYST' },
     { key: 'other', label: 'OTHERS' }
-  ];
-
-  var blogPosts = [
-    { date: '2026.06', title: 'Notes on volatility surfaces', excerpt: 'Working through implied vol construction and what it teaches about market expectations.' },
-    { date: '2026.04', title: 'Building StockInds: real-time data, lessons learned', excerpt: 'Architecture notes on polling, caching, and rendering live market data smoothly.' },
-    { date: '2026.02', title: 'From treasurer to trader: thinking in risk', excerpt: 'How managing a real budget changed the way I read financial statements.' }
   ];
 
   var bookmarks = [
@@ -345,13 +353,32 @@
     }).join('');
   }
 
+  // Posts are Markdown files in posts/ — see blog/blog.js. The three newest
+  // are shown here; the full list lives on blog/index.html.
   function renderBlog(){
-    el('blogList').innerHTML = blogPosts.map(function(post){
-      return '<div class="blog-row" style="display:grid;grid-template-columns:100px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid rgba(234,245,238,.06)">'
-        + '<div style="font-size:11px;color:rgba(234,245,238,.4)">' + esc(post.date) + '</div>'
-        + '<div><div style="font-size:13.5px;font-weight:600;margin-bottom:4px">' + esc(post.title) + '</div>'
-        + '<div style="font-size:12px;color:rgba(234,245,238,.55);line-height:1.6">' + esc(post.excerpt) + '</div></div></div>';
-    }).join('');
+    var list = el('blogList');
+
+    function note(text){
+      list.innerHTML = '<div style="font-size:12px;color:rgba(234,245,238,.4);line-height:1.8;padding:14px 0">' + esc(text) + '</div>';
+    }
+
+    if(typeof Blog === 'undefined'){ note('// posts unavailable right now'); return; }
+
+    note('// fetching posts…');
+
+    Blog.listPosts().then(function(posts){
+      if(posts.length === 0){ note('// no posts published yet'); return; }
+      list.innerHTML = posts.slice(0, 3).map(function(post){
+        var href = 'blog/' + Blog.postUrl(post.slug);
+        return '<div class="blog-row" style="display:grid;grid-template-columns:100px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid rgba(234,245,238,.06)">'
+          + '<div style="font-size:11px;color:rgba(234,245,238,.4)">' + esc(Blog.formatDate(post.date)) + '</div>'
+          + '<div><h3 style="margin:0 0 4px;font-size:13.5px;font-weight:600">'
+          + '<a class="blog-link" href="' + attr(href) + '">' + esc(post.title) + '</a></h3>'
+          + '<div style="font-size:12px;color:rgba(234,245,238,.55);line-height:1.6">' + esc(post.excerpt) + '</div></div></div>';
+      }).join('');
+    }).catch(function(err){
+      note('// ' + Blog.errorMessage(err));
+    });
   }
 
   function renderBookmarks(){
@@ -399,15 +426,34 @@
   // ---- scroll-driven visuals ----
   var scrollDot = el('scrollDot');
   var spiralPath = el('spiralPath');
+  var rightRail = document.querySelector('.rightrail');
   var ticking = false;
+
+  // The bell curve is drawn in a 0-100 viewBox stretched over the whole rail,
+  // so the dot has to be placed from the rail's *measured* size — hardcoded
+  // pixel values break on any viewport that isn't the size they were picked
+  // for (short laptops, landscape phones, a resized window).
+  var RAIL_INSET = 10;               // matches the svg's top/bottom inset
+  var rail = { w: 0, h: 0, live: false };
+
+  function measureRail(){
+    if(!rightRail){ rail.live = false; return; }
+    var box = rightRail.getBoundingClientRect();
+    rail.w = box.width;
+    rail.h = box.height;
+    rail.live = box.width > 0 && box.height > 0;  // false when display:none
+  }
 
   function applyScroll(){
     var t = state.scrollProgress;
     var bulge = Math.exp(-Math.pow(t - 0.5, 2) / (2 * 0.15 * 0.15));
-    var dotLeftPct = 20 + bulge * 50;
-    var dotTopPct = t * 100;
-    scrollDot.style.left = dotLeftPct + '%';
-    scrollDot.style.top = dotTopPct + '%';
+
+    if(rail.live){
+      // curve x runs 20 -> 70 in viewBox units, mapped onto the rail's width
+      var track = Math.max(0, rail.h - RAIL_INSET * 2);
+      scrollDot.style.left = ((20 + bulge * 50) / 100 * rail.w).toFixed(2) + 'px';
+      scrollDot.style.top = (RAIL_INSET + t * track).toFixed(2) + 'px';
+    }
 
     var spiralScale = 0.32 + t * 0.7;
     spiralPath.parentNode.style.transform = 'scale(' + spiralScale.toFixed(3) + ')';
@@ -437,6 +483,19 @@
   });
   window.addEventListener('resize', function(){ if(window.innerWidth > 860) closeMenu(); });
 
+  // ---- keep the rail in step with the viewport ----
+  // Fires on window resize, orientation change, and (where supported) the
+  // mobile URL bar sliding away, which changes the rail's height mid-scroll.
+  function refreshRail(){
+    measureRail();
+    onScroll();
+  }
+  window.addEventListener('resize', refreshRail);
+  window.addEventListener('orientationchange', refreshRail);
+  if(typeof ResizeObserver !== 'undefined' && rightRail){
+    new ResizeObserver(refreshRail).observe(rightRail);
+  }
+
   function onScroll(){
     var doc = document.documentElement;
     var max = doc.scrollHeight - window.innerHeight;
@@ -458,6 +517,7 @@
   renderSuggestions();
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  measureRail();
   onScroll();
 })();
 </script>

@@ -1,5 +1,5 @@
 ---
-title: "Why "Hedge More Often" Is Bad Advice, At Least Sometimes"
+title: "Stop Hedging Every Day, what 20000 Simulated Paths Taught Me About Transaction Costs"
 date: 2026-08-04
 ---
 # Why "Hedge More Often" Is Bad Advice, At Least Sometimes

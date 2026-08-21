@@ -1,3 +1,8 @@
+---
+title: " What a 9 percent coupon is actually worth"
+subtitle: "Calibrating Heston to one expiry, sixty times, and what came back"
+date: 2026-08-20
+---
 # what-a-9-percent-coupon-is-actually-worth
 
 A retail structured note fits on one page. Three years, quarterly observations, autocall at 100% of the starting level, a 9% annual memory coupon paid whenever the index is above 75%, capital back in full unless the index finishes below 70%. It reads like a bond with a good coupon, and that is why it sells.

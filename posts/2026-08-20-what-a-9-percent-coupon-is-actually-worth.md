@@ -1,6 +1,5 @@
 ---
 title: " What a 9 percent coupon is actually worth"
-subtitle: "Calibrating Heston to one expiry, sixty times, and what came back"
 date: 2026-08-20
 ---
 # what-a-9-percent-coupon-is-actually-worth

@@ -1,3 +1,7 @@
+---
+title: "Why "Hedge More Often" Is Bad Advice, At Least Sometimes"
+date: 2026-08-04
+---
 # Why "Hedge More Often" Is Bad Advice, At Least Sometimes
 
 I built an options pricing lab to answer a question that sounds simple but rarely gets a straight answer: if you're delta-hedging an option and every trade costs you money, how often should you actually rebalance?

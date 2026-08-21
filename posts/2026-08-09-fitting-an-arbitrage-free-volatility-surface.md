@@ -1,5 +1,7 @@
+---
 title: " Fitting an arbitrage-free volatility surface (and paying for it)"
 date: 2026-08-09
+---
 # Fitting an arbitrage-free volatility surface (and paying for it)
 
 I set out to build one function: `σ(K, T)`. Give it a strike and a maturity, get back an implied volatility. That's it. It sounds like an interpolation problem, and for about a day I treated it like one. It isn't.

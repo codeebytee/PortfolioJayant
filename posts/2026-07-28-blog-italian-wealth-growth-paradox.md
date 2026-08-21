@@ -1,3 +1,6 @@
+---
+date:  2026-07-28
+---
 # Why a country full of rich households stopped getting more productive
 
 I just handed in my final dissertation for my degree in Business and Economics at Bologna, and I want to write down what it was actually about before the whole thing blurs in my head. The title is *The Italian Wealth-Growth Paradox: How Household Asset Allocation and Structural Rigidities Hinder Productivity*, which is a mouthful, so here is the short version.
